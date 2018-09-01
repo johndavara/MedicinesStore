@@ -16,7 +16,8 @@ mix.styles([
 ], 'public/css/plantilla.css')
 .scripts([
     'resources/assets/plantilla/js/main.js'
-], 'public/js/plantilla.js');
+], 'public/js/plantilla.js')
+.js(['resources/assets/js/app.js'],'public/js/app.js');
 
 /*
 mix.js('resources/assets/js/app.js', 'public/js')
