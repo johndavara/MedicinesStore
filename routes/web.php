@@ -33,3 +33,6 @@ Route::put('/product/desactivate','ProductController@desactivate');
 Route::get('/shoppingCart','ShoppingCartController@index');
 Route::post('/shoppingCart/store','ShoppingCartController@store');
 Route::put('/shoppingCart/destroy','ShoppingCartController@destroy');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
