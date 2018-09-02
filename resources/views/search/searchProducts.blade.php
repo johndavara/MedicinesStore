@@ -26,8 +26,8 @@
                 <a href="#" class="btn btn-primary">Add to cart</a>
             </div>
             </div>
-            @endforeach
         </div>
+            @endforeach
         </div>
     </div>
 </div>
