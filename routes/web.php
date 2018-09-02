@@ -37,3 +37,5 @@ Route::put('/shoppingCart/destroy','ShoppingCartController@destroy');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/search', 'SearchController@search');
