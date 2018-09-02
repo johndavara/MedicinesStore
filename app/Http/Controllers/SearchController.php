@@ -15,7 +15,8 @@ class SearchController extends Controller
     public function search(Request $request)
     {
         $criteria = $request->input('search');
-        // pending logic to select query
-        return view('search.searchProducts')->with('criteria', $criteria);
+        $products = Product::where('name', $criteria)
+        ->orWhere('name', 'like', '%' . $criteria . '%')->get();
+        return view('search.searchProducts')->with('products', $products);
     }
 }

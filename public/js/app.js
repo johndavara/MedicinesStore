@@ -47504,30 +47504,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    data: function data() {
-        return {
-            name: '',
-            description: '',
-            productArray: []
-        };
-    },
+  data: function data() {
+    return {
+      name: "",
+      description: "",
+      productArray: []
+    };
+  },
 
-    methods: {
-        listProducts: function listProducts() {
-            var me = this;
-            axios.get('/product').then(function (response) {
-                me.productArray = response.data;
-            }).catch(function (error) {
-                // handle error
-                console.log(error);
-            });
-        }
-    },
-    mounted: function mounted() {
-        this.listProducts();
+  methods: {
+    listProducts: function listProducts() {
+      var me = this;
+      axios.get("/product").then(function (response) {
+        me.productArray = response.data;
+      }).catch(function (error) {
+        // handle error
+        console.log(error);
+      });
     }
+  },
+  mounted: function mounted() {
+    this.listProducts();
+  }
 });
 
 /***/ }),
@@ -47545,13 +47547,19 @@ var render = function() {
       _vm._l(_vm.productArray, function(productItem) {
         return _c("div", { key: productItem.id, staticClass: "col-sm-3" }, [
           _c("div", { staticClass: "card" }, [
-            _c("img", {
-              staticClass: "card-img-top",
-              attrs: {
-                src: "/images/products/" + productItem.photo,
-                alt: "Card image cap"
-              }
-            }),
+            _c(
+              "a",
+              { attrs: { href: "/product/" + productItem.id + "/show" } },
+              [
+                _c("img", {
+                  staticClass: "card-img-top",
+                  attrs: {
+                    src: "/images/products/" + productItem.photo,
+                    alt: "Card image cap"
+                  }
+                })
+              ]
+            ),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
               _c("h5", {
