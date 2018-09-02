@@ -24,6 +24,7 @@ Route::put('/category/desactivate','CategoryController@desactivate');
 
 
 Route::get('/product','ProductController@index');
+Route::get('/product/{id}/show','ProductController@show');
 Route::post('/product/store','ProductController@store');
 Route::put('/product/update','ProductController@update');
 Route::put('/product/activate','ProductController@activate');
