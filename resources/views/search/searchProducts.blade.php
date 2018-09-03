@@ -16,7 +16,7 @@
         @foreach ($products as $product)
             <div class="col-sm-3"> 
             <div class="card">
-            <a>
+            <a href="/product/{{$product->id}}/show">
                 <img class="card-img-top" src="/images/products/{{$product->photo}}" alt="Card image cap">
             </a>
             <div class="card-body">
