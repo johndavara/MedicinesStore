@@ -16,7 +16,8 @@ class SearchController extends Controller
     {
         $criteria = $request->input('search');
         $products = Product::where('name', $criteria)
-        ->orWhere('name', 'like', '%' . $criteria . '%')->get();
+        ->orWhere('name', 'like', '%' . $criteria . '%')
+        ->orWhere('description', 'like', '%' . $criteria . '%')->get();
         return view('search.searchProducts')->with('products', $products);
     }
 }
