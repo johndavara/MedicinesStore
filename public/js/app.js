@@ -47685,6 +47685,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -47698,6 +47701,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var me = this;
       axios.get("/shoppingCart/checkoutData").then(function (response) {
         me.productArray = response.data;
+      }).catch(function (error) {
+        // handle error
+        console.log(error);
+      });
+    },
+    deleteItemCheckout: function deleteItemCheckout(id) {
+      var me = this;
+      axios.put("/shoppingCart/deleteItemCheckout", {
+        'id': id
+      }).then(function () {
+        me.listProducts();
       }).catch(function (error) {
         // handle error
         console.log(error);
@@ -47751,7 +47765,7 @@ var render = function() {
               return _c(
                 "li",
                 {
-                  key: productItem.id,
+                  key: productItem.idProductCheckout,
                   staticClass:
                     "list-group-item d-flex justify-content-between lh-condensed"
                 },
@@ -47767,25 +47781,48 @@ var render = function() {
                       domProps: {
                         textContent: _vm._s("Precio ₡ " + productItem.price)
                       }
-                    })
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger",
+                        attrs: {
+                          type: "button",
+                          id: productItem.idProductCheckout
+                        },
+                        on: {
+                          click: function($event) {
+                            _vm.deleteItemCheckout(
+                              productItem.idProductCheckout
+                            )
+                          }
+                        }
+                      },
+                      [_vm._v("X")]
+                    )
                   ])
                 ]
               )
             })
           ),
           _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass: "dropdown-item",
-              attrs: { href: "/shoppingCart/checkout" }
-            },
-            [
-              _vm._v(
-                "\r\n                                Pagar\r\n                            "
-              )
-            ]
-          )
+          _vm.productArray.length > 0
+            ? _c("div", { staticClass: "col-md-4" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass: "btn btn-success center-block",
+                    attrs: { href: "/shoppingCart/checkout" }
+                  },
+                  [
+                    _vm._v(
+                      "\r\n                                Pagar\r\n                            "
+                    )
+                  ]
+                )
+              ])
+            : _vm._e()
         ]
       )
     ])

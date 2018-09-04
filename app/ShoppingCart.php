@@ -8,5 +8,5 @@ class ShoppingCart extends Model
 {
     protected $table = 'shoppingCart';
     protected $primaryKey = 'id';
-    protected $fillable = ['idProduct','idUser'];
+    protected $fillable = ['id','idProduct','idUser'];
 }

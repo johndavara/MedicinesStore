@@ -36,6 +36,7 @@ Route::post('/shoppingCart/store','ShoppingCartController@store');
 Route::put('/shoppingCart/destroy','ShoppingCartController@destroy');
 Route::get('/shoppingCart/checkout','ShoppingCartController@checkout');
 Route::get('/shoppingCart/checkoutData','ShoppingCartController@checkoutData');
+Route::put('/shoppingCart/deleteItemCheckout','ShoppingCartController@deleteItemCheckout');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -58,38 +58,51 @@ class ShoppingCartController extends Controller
     public function checkout()
     {
         $id = Auth::user()->id;
-        $shoppingCart = ShoppingCart::all();
 
         $result = ShoppingCart::join('users', 'shoppingcart.idUser', '=', 'users.id')
-        ->join('product', 'shoppingcart.idProduct', '=', 'product.id')
+        ->join('product', 'product.id', '=', 'shoppingcart.idProduct')
         ->select('product.id', 'product.name', 'product.description','product.photo', 'product.price','users.id')
         ->where('users.id', $id)
-        ->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
         ->get();
 
 
         return view('shoppingCart.checkout')->with('products',$result);
     }
 
+
 /**
-     * Return list of products
+     * Get checkout view.
      *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function checkoutData()
     {
         $id = Auth::user()->id;
-        $shoppingCart = ShoppingCart::all();
 
         $result = ShoppingCart::join('users', 'shoppingcart.idUser', '=', 'users.id')
-        ->join('product', 'shoppingcart.idProduct', '=', 'product.id')
-        ->select('product.id', 'product.name', 'product.description','product.photo', 'product.price','users.id')
+        ->join('product', 'product.id', '=', 'shoppingcart.idProduct')
+        ->select('shoppingcart.id as idProductCheckout','product.id', 'product.name', 'product.description','product.photo', 'product.price','users.id')
         ->where('users.id', $id)
-        ->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
         ->get();
 
 
         return $result;
     }
-
+    /**
+     * Return list of products
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function deleteItemCheckout(Request $request)
+    {
+        try {
+            $shoppingCart = ShoppingCart::where('id',$request->id)->firstOrFail();
+            if($shoppingCart != null){
+                $shoppingCart->delete();
+            }
+        } catch (Exception $e) {
+        }
+ }
 }
