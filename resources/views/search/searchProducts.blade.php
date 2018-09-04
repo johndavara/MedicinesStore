@@ -7,7 +7,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <h4>Resultados de: {{$products->count()}}</h4>
+            <h4>Resultados de busqueda con: {{$criteria }} / total: {{  $products->count()}}</h4>
             
         </div>
     </div>
@@ -16,7 +16,7 @@
         @foreach ($products as $product)
             <div class="col-sm-3"> 
             <div class="card">
-            <a href="/product/{{$product->id}}/show">
+            <a href="/product/{{$product->id}}/{{$criteria}}/show">
                 <img class="card-img-top" src="/images/products/{{$product->photo}}" alt="Card image cap">
             </a>
             <div class="card-body">

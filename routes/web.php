@@ -24,7 +24,7 @@ Route::put('/category/desactivate','CategoryController@desactivate');
 
 
 Route::get('/product','ProductController@index');
-Route::get('/product/{id}/show','ProductController@show');
+Route::get('/product/{id}/{criteria}/show','ProductController@show');
 Route::post('/product/store','ProductController@store');
 Route::put('/product/update','ProductController@update');
 Route::put('/product/activate','ProductController@activate');
@@ -39,3 +39,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/search', 'SearchController@search');
+Route::get('/directSearch/{id}/directSearch','SearchController@directSearch');

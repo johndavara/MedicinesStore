@@ -3,7 +3,12 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <a class="btn btn-primary" href="/home">Atrás</a>
+    @if($criteria == 'all')
+      <a class="btn btn-primary" href="/home">Atrás</a>
+    @else
+      <a class="btn btn-primary" href="/directSearch/{{$criteria}}/directSearch">Atrás</a>
+    @endif
+       
     </div>
     <div class="row">
         <div class="card">

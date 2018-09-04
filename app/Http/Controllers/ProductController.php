@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use Illuminate\Console;
 
 class ProductController extends Controller
 {
@@ -42,10 +43,13 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id,$criteria)
     {
+        info($criteria);
+        //Console::info('mymessage = ' + $criteria);
+        error_log('Some message here.');
         $product = Product::find($id);
-        return view('products.showProduct')->with('product', $product);
+        return view('products.showProduct')->with('product', $product)->with('criteria', $criteria);
     }
 
     /**

@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-sm-3" v-for="productItem in productArray" :key="productItem.id" > 
             <div class="card">
-            <a v-bind:href="'/product/'+productItem.id+'/show'">
+            <a v-bind:href="'/product/'+productItem.id+'/all'+'/show'">
                 <img class="card-img-top" v-bind:src="'/images/products/'+productItem.photo" alt="Card image cap">
             </a>
             <div class="card-body">

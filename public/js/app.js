@@ -47549,7 +47549,9 @@ var render = function() {
           _c("div", { staticClass: "card" }, [
             _c(
               "a",
-              { attrs: { href: "/product/" + productItem.id + "/show" } },
+              {
+                attrs: { href: "/product/" + productItem.id + "/all" + "/show" }
+              },
               [
                 _c("img", {
                   staticClass: "card-img-top",
