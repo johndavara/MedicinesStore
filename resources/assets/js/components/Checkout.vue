@@ -1,16 +1,17 @@
 <template>
 
 <div class="container">
-             <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+             <li class="nav-item dropdown scrollable-menu" id="liCheckoutMenu">
+                    <a id="navbarDropdownCheckout" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             Carrito de compras<span class="caret"
                             ></span>
                         </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownCheckout" id="navbarDropdownCheckoutBody">
                         <h4 class="d-flex justify-content-between align-items-center mb-3">
                         <span class="text-muted">Su carrito</span>
                         <span class="badge badge-secondary badge-pill" v-text="productArray.length"></span>
                     </h4>
+                    <div class="itemsStoreSystem">
                     <ul class="list-group mb-3">
                         <li class="list-group-item d-flex justify-content-between lh-condensed"  v-for="productItem in productArray" :key="productItem.idProductCheckout" >
                         <div>
@@ -21,6 +22,7 @@
                         </li>
 
                        </ul>
+                    </div>
                        <div v-if="productArray.length > 0" class="col-md-4">
                             <a class="btn btn-success center-block" href="/shoppingCart/checkout">
                                 Pagar
@@ -60,6 +62,8 @@ export default {
         })
         .then(function() {
             me.listProducts();
+            $("#liCheckoutMenu").addClass("show");
+            $("#navbarDropdownCheckoutBody").addClass("show");
         })
         .catch(function(error) {
           // handle error
@@ -72,3 +76,11 @@ export default {
   }
 };
 </script>
+<style>
+.itemsStoreSystem{
+    display: block;
+    height:250px !important;
+    width: 300px !important;
+    overflow-x:auto;
+}
+</style>

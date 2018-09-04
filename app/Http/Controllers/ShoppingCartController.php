@@ -19,19 +19,6 @@ class ShoppingCartController extends Controller
         return $shoppingCart;
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $shoppingCart = new Product();
-        $shoppingCart->idProduct = $request->idProduct;
-        $shoppingCart->idCategory = $request->idCategory;
-        $shoppingCart->save();
-    }
 
 
 /**
@@ -105,4 +92,20 @@ class ShoppingCartController extends Controller
         } catch (Exception $e) {
         }
  }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     */
+    public function addToCheckout(Request $request)
+    {
+        $idUser = Auth::user()->id;
+        $shoppingCart = new ShoppingCart();
+        $shoppingCart->idUser = $idUser;
+        $shoppingCart->idProduct = $request->id;
+        $shoppingCart->save();
+    }
+
+
 }

@@ -1,3 +1,4 @@
+
 <template>
     <div class="container">
         <div class="row">
@@ -10,7 +11,7 @@
                 <h5 class="card-title" v-text="productItem.name"></h5>
                 <p class="card-text" v-text="productItem.description"></p>
                 <p class="card-text" v-text="productItem.price"></p>
-                <a href="#" class="btn btn-primary">Add to cart</a>
+                <a  class="btn btn-primary" @click="addToCheckout(productItem.id,productItem.name)" v-bind:id="productItem.id">Agregar al carrito</a>
             </div>
             </div>
         </div>
@@ -19,7 +20,11 @@
 </template>
 
 <script>
+import swal from 'sweetalert2/dist/sweetalert2.js'
+
+import 'sweetalert2/src/sweetalert2.scss'
 export default {
+  
   data() {
     return {
       name: "",
@@ -34,6 +39,25 @@ export default {
         .get("/product")
         .then(function(response) {
           me.productArray = response.data;
+        })
+        .catch(function(error) {
+          // handle error
+          console.log(error);
+        });
+    },
+    addToCheckout(id,name){
+        let me = this;
+      axios
+        .post("/shoppingCart/addToCheckout",{
+            'id': id
+        })
+        .then(function(response) {
+                swal({
+                      title: 'Carrito de compras',
+                      text: 'El articulo ' + name + ' fue agregado al carrito de compras.',
+                      type: 'info',
+                      confirmButtonText: 'Esta bien'
+                    });
         })
         .catch(function(error) {
           // handle error

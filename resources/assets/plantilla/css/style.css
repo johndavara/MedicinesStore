@@ -1,0 +1,7 @@
+
+.itemsStoreSystem{
+    display: block;
+    height:250px !important;
+    width: 300px !important;
+    overflow-x:scroll;
+}

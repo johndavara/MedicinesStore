@@ -15,7 +15,8 @@ mix.styles([
     'resources/assets/plantilla/css/style.css'
 ], 'public/css/plantilla.css')
 .scripts([
-    'resources/assets/plantilla/js/main.js'
+    'resources/assets/plantilla/js/main.js',
+    'resources/assets/plantilla/js/sweetalert2.js'
 ], 'public/js/plantilla.js')
 .js(['resources/assets/js/app.js'],'public/js/app.js');
 
