@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ShoppingCart;
+use Illuminate\Support\Facades\Auth;
 
 class ShoppingCartController extends Controller
 {
@@ -46,5 +47,49 @@ class ShoppingCartController extends Controller
         $shoppingCart->delete();
     }
 
+
+/**
+     * Get checkout view.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function checkout()
+    {
+        $id = Auth::user()->id;
+        $shoppingCart = ShoppingCart::all();
+
+        $result = ShoppingCart::join('users', 'shoppingcart.idUser', '=', 'users.id')
+        ->join('product', 'shoppingcart.idProduct', '=', 'product.id')
+        ->select('product.id', 'product.name', 'product.description','product.photo', 'product.price','users.id')
+        ->where('users.id', $id)
+        ->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
+        ->get();
+
+
+        return view('shoppingCart.checkout')->with('products',$result);
+    }
+
+/**
+     * Return list of products
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function checkoutData()
+    {
+        $id = Auth::user()->id;
+        $shoppingCart = ShoppingCart::all();
+
+        $result = ShoppingCart::join('users', 'shoppingcart.idUser', '=', 'users.id')
+        ->join('product', 'shoppingcart.idProduct', '=', 'product.id')
+        ->select('product.id', 'product.name', 'product.description','product.photo', 'product.price','users.id')
+        ->where('users.id', $id)
+        ->getQuery() // Optional: downgrade to non-eloquent builder so we don't build invalid User objects.
+        ->get();
+
+
+        return $result;
+    }
 
 }

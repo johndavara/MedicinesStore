@@ -45,9 +45,6 @@ class ProductController extends Controller
      */
     public function show($id,$criteria)
     {
-        info($criteria);
-        //Console::info('mymessage = ' + $criteria);
-        error_log('Some message here.');
         $product = Product::find($id);
         return view('products.showProduct')->with('product', $product)->with('criteria', $criteria);
     }
